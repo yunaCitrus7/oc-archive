@@ -1124,3 +1124,51 @@ body > main > .archive-title {
     box-shadow: 6px 6px 0 var(--node-color);
   }
 }
+
+/* Larger homepage character presentation on phones. */
+@media (max-width: 800px) {
+  .characters .portrait {
+    min-height: 470px;
+    margin-inline: -8px;
+  }
+
+  .characters .portrait .character-art {
+    max-width: 118%;
+    width: 118%;
+    height: 118%;
+  }
+}
+
+/* Extended profile notes sourced from the character setting files. */
+.profile-extra {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.profile-extra article {
+  padding: 28px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  box-shadow: 7px 7px 0 var(--accent);
+}
+
+.profile-extra h3 {
+  margin: 0 0 18px;
+  font: 800 clamp(25px, 3vw, 38px)/1 var(--font-display);
+}
+
+.profile-extra ul {
+  margin: 0;
+  padding-left: 1.25em;
+}
+
+.profile-extra li {
+  margin: 0 0 10px;
+  font: 400 16px/1.7 var(--font-body);
+}
+
+@media (max-width: 700px) {
+  .profile-extra { grid-template-columns: 1fr; }
+}
