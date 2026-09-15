@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import MobileNav from "./MobileNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <MobileNav />
+        <footer className="footer site-footer">
+          <div className="brand"><span>CITRU</span>SODA</div>
+          <p>ORIGINAL CHARACTER ARCHIVE · FAN WORK</p>
+          <a href="/">BACK TO HOME ↑</a>
+        </footer>
       </body>
     </html>
   );

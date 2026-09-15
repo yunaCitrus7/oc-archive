@@ -1,4 +1,39 @@
 @import "tailwindcss";
+@font-face {
+  font-family: "SpAlterna";
+  src: url("/fonts/SpAlterna-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BlitzMain";
+  src: url("/fonts/BlitzMain.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BlitzBold";
+  src: url("/fonts/BlitzBold.otf") format("opentype");
+  font-weight: 700 950;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SourceHanSansTW";
+  src: url("/fonts/SourceHanSansTW-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SourceHanSansTW";
+  src: url("/fonts/SourceHanSansTW-Heavy.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 .characters .tabs button.active::before{display:block!important;inset:-32%!important;width:auto!important;height:auto!important;background:var(--splash)!important;-webkit-mask:url("/effects/ink-splash.svg") center/contain no-repeat;mask:url("/effects/ink-splash.svg") center/contain no-repeat;filter:none!important;opacity:0;animation:svg-ink-splash .68s cubic-bezier(.16,.78,.2,1)!important;transform-origin:center!important}@keyframes svg-ink-splash{0%{opacity:0;transform:scale(.16) rotate(-12deg)}24%{opacity:1}68%{opacity:1;transform:scale(1.05) rotate(2deg)}100%{opacity:0;transform:scale(1.16) rotate(5deg)}}@media(prefers-reduced-motion:reduce){.characters .tabs button.active::before{animation:none!important;opacity:0!important}}
 .characters .tabs button.active::before{display:block!important;inset:-34%!important;left:-34%!important;top:-34%!important;right:-34%!important;bottom:-34%!important;width:auto!important;height:auto!important;border-radius:0!important;background:repeating-conic-gradient(var(--splash) 0 2.5%,transparent 2.8% 9%),repeating-conic-gradient(from 17deg,transparent 0 5%,var(--splash) 5.4% 7.5%,transparent 7.8% 13%) 50%/78% 78%,repeating-conic-gradient(from -11deg,transparent 0 8%,var(--splash) 8.4% 10%,transparent 10.4% 17%) 50%/92% 92%,radial-gradient(ellipse at center,var(--splash) 0 34%,transparent 35%)!important;background-repeat:no-repeat!important;filter:blur(2.5px) contrast(18)!important;transform-origin:center!important;animation:icon-splash-real .72s cubic-bezier(.12,.74,.17,1)!important}@keyframes icon-splash-real{0%{opacity:0;transform:scale(.08) rotate(-18deg)}22%{opacity:1}68%{opacity:1;transform:scale(1) rotate(2deg)}84%{opacity:.92;transform:scale(.94) rotate(-1deg)}100%{opacity:0;transform:scale(1.12) rotate(4deg)}}@media(prefers-reduced-motion:reduce){.characters .tabs button.active::before{animation:none!important;opacity:0!important}}
 body .characters .tabs button{background:transparent;border-radius:0;box-shadow:none;overflow:visible;isolation:isolate}body .characters .tabs button:hover{transform:scale(1.04)}body .characters .tabs button.active{background:transparent;box-shadow:none;transform:none;color:var(--ink);animation:none}body .characters .tabs button img{position:relative;z-index:2;width:88%;height:88%}body .characters .tabs button:before{content:"";position:absolute;z-index:0;inset:-18%;opacity:0;border-radius:0;background:repeating-conic-gradient(var(--splash) 0 3%,transparent 0 11%),repeating-conic-gradient(transparent 0 5%,var(--splash) 0 7%) 50%/60% 60%,repeating-conic-gradient(transparent 0 7%,var(--splash) 0 9%) 50%/72% 72%,repeating-conic-gradient(transparent 0 11%,var(--splash) 0 13%) 50%/84% 84%,radial-gradient(var(--splash) 0 24%,transparent 25%);background-repeat:no-repeat;filter:blur(8px) contrast(26);pointer-events:none}body .characters .tabs button:after{display:none}body .characters .tabs button:nth-child(odd){--splash:#ff4f98}body .characters .tabs button:nth-child(even){--splash:#ff5426}body .characters .tabs button.active:before{animation:icon-splash .62s cubic-bezier(.16,.78,.2,1)}@keyframes icon-splash{0%{opacity:0;transform:scale(.15) rotate(-10deg)}30%{opacity:1}72%{opacity:1;transform:scale(1.08) rotate(4deg)}100%{opacity:0;transform:scale(1.24) rotate(7deg)}}@media(prefers-reduced-motion:reduce){body .characters .tabs button.active:before{animation:none}}
@@ -65,5 +100,1027 @@ body .characters .tabs button.active img {
   body .characters .tabs button.active img {
     animation: none;
     transform: scale(1.04);
+  }
+}
+
+.portrait .character-art {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: clamp(10px, 2vw, 24px);
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.portrait:has(.character-art)::before,
+.portrait:has(.character-art)::after {
+  opacity: .32;
+}
+
+.portrait:has(.character-art) small {
+  z-index: 2;
+  padding: 6px 9px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.detail-portrait .character-art {
+  padding: clamp(14px, 2.5vw, 34px);
+}
+
+/* Clean, consistently sized character stage. */
+.characters .portrait,
+.detail-portrait {
+  overflow: visible;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+.characters .portrait {
+  width: 100%;
+  height: clamp(500px, 46vw, 620px);
+  min-height: 0;
+}
+
+.portrait:has(.character-art)::before,
+.portrait:has(.character-art)::after {
+  display: none;
+}
+
+.portrait .character-art,
+.detail-portrait .character-art {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 18px 12px rgb(17 16 24 / .2));
+  animation: character-float 4.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.portrait-yuuhi .character-art { scale: 1; }
+.portrait-musubi .character-art { scale: 1; }
+.portrait-shuu .character-art { scale: 1; }
+.portrait-akane .character-art { scale: 1.025; }
+.portrait-sumire .character-art { scale: 1.025; }
+.portrait-kumori .character-art { scale: 1.01; }
+
+@keyframes character-float {
+  0%, 100% { transform: translateY(0) rotate(-.35deg); }
+  50% { transform: translateY(-13px) rotate(.35deg); }
+}
+
+@media (max-width: 800px) {
+  .characters .portrait {
+    height: clamp(360px, 108vw, 500px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait .character-art,
+  .detail-portrait .character-art {
+    animation: none;
+  }
+}
+
+/* Notebook archive refresh. */
+html,
+body,
+.detail,
+.notebook-page {
+  background-color: #fff !important;
+  background-image: radial-gradient(circle, #d9d9de 1.15px, transparent 1.25px) !important;
+  background-size: 22px 22px !important;
+}
+
+.nav {
+  height: 56px !important;
+  min-height: 56px;
+  padding-inline: 4vw;
+  background: rgb(255 255 255 / .94) !important;
+  backdrop-filter: blur(8px);
+}
+
+.nav .brand { font-size: 18px; }
+.characters { background: transparent; }
+
+.portrait:has(.character-art) small {
+  display: none !important;
+}
+
+.portrait-yuuhi .character-art,
+.portrait-shuu .character-art,
+.portrait-akane .character-art,
+.portrait-sumire .character-art,
+.portrait-kumori .character-art {
+  scale: 1 !important;
+}
+
+.portrait-musubi .character-art {
+  scale: 1.5 !important;
+}
+
+.comic-preview {
+  color: var(--ink);
+  background: rgb(255 255 255 / .58);
+  border-block: 2px solid var(--ink);
+}
+
+.comic-preview .section-head.light {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.comic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 42px);
+}
+
+.comic-card {
+  display: block;
+  transition: transform .2s ease;
+}
+
+.comic-card:nth-child(2) { transform: translateY(20px) rotate(1deg); }
+.comic-card:nth-child(3) { transform: rotate(-1deg); }
+.comic-card:hover { transform: translateY(-8px) rotate(-1deg); }
+
+.comic-art-slot {
+  position: relative;
+  display: grid;
+  place-content: center;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  background:
+    linear-gradient(135deg, transparent 48%, rgb(255 255 255 / .55) 49% 51%, transparent 52%),
+    var(--orange);
+  box-shadow: 9px 9px 0 var(--ink);
+  text-align: center;
+}
+
+.comic-card:nth-child(2) .comic-art-slot { background-color: #ff4f98; }
+.comic-card:nth-child(3) .comic-art-slot { background-color: #7652f3; }
+.comic-art-slot span { color: #fff; font: 950 clamp(38px, 6vw, 82px)/1 Arial,sans-serif; letter-spacing: -.08em; }
+.comic-art-slot small { margin-top: 12px; color: #fff; font: 900 12px monospace; letter-spacing: 2px; }
+.comic-card > div:last-child { padding-top: 22px; }
+.comic-card > div:last-child small { font: 800 11px monospace; letter-spacing: 1px; color: var(--muted); }
+.comic-card h3 { margin: 8px 0 0; font-size: clamp(22px, 2.5vw, 34px); }
+.story-button { margin: 60px 0 0 auto; }
+
+.collection-page {
+  width: min(1180px, 90vw);
+  margin: 0 auto;
+  padding: 28px 0 110px;
+}
+
+.collection-page > .back { margin: 0; }
+.collection-page > header { padding: 70px 0 54px; }
+.collection-page > header span { font: 900 12px monospace; letter-spacing: 2px; }
+.collection-page > header h1 { margin: 12px 0 0; font-size: clamp(70px, 13vw, 170px); line-height: .8; letter-spacing: -.08em; }
+
+@media (max-width: 800px) {
+  .nav { height: 52px !important; min-height: 52px; }
+  .nav .brand { font-size: 15px; }
+  .comic-grid { grid-template-columns: 1fr; gap: 52px; }
+  .comic-card:nth-child(2),
+  .comic-card:nth-child(3) { transform: none; }
+  .comic-art-slot { aspect-ratio: 5 / 4; }
+  .story-button { margin-top: 44px; }
+}
+
+/* Match gallery frames to the portrait artwork instead of centering it in tall boxes. */
+.gallery-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+}
+
+.gallery-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: contain;
+  object-position: center top;
+}
+
+@media (max-width: 800px) {
+  .gallery-image {
+    height: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .gallery-image {
+    height: auto;
+    max-height: none;
+  }
+}
+
+/*
+ * MANUAL CHARACTER IMAGE ADJUSTMENTS
+ * 1.00 = original size, 1.10 = 10% larger, 0.90 = 10% smaller.
+ * Home page and profile page values can be adjusted independently.
+ */
+.characters .portrait-yuuhi, .characters .portrait-shuu,
+.characters .portrait-akane, .characters .portrait-sumire, .characters .portrait-kumori { --art-scale: 1.06; --art-x: 0px; --art-y: 0px; }
+.characters .portrait-musubi { --art-scale: 1.08; --art-x: 0px; --art-y: 0px; }
+
+.detail .portrait-yuuhi  { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+.detail .portrait-musubi { --art-scale: 1.12; --art-x: 0px; --art-y: 0px; }
+.detail .portrait-shuu   { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+.detail .portrait-akane  { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+.detail .portrait-sumire { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+.detail .portrait-kumori { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+
+.characters .portrait .character-art,
+.detail .detail-portrait .character-art {
+  animation: none !important;
+  scale: var(--art-scale, 1) !important;
+  transform: translate(var(--art-x, 0px), var(--art-y, 0px)) !important;
+  will-change: auto;
+}
+
+/* Supplied SVG ink splashes behind the large character artwork. */
+.portrait-yuuhi  { --portrait-ink: #ff672f; }
+.portrait-musubi { --portrait-ink: #ff4f98; }
+.portrait-shuu   { --portrait-ink: #ff78b5; }
+.portrait-sumire { --portrait-ink: #7652f3; }
+.portrait-akane  { --portrait-ink: #e93935; }
+.portrait-kumori { --portrait-ink: #ffe8f1; }
+
+.portrait-splashes {
+  position: absolute;
+  z-index: 0;
+  inset: -2%;
+  pointer-events: none;
+}
+
+.portrait-splashes i {
+  position: absolute;
+  display: block;
+  height: auto;
+  aspect-ratio: 1;
+  background: var(--portrait-ink);
+  opacity: 0;
+  transform-origin: center;
+  animation: portrait-splash-pop .62s cubic-bezier(.18,.82,.25,1.18) both;
+}
+
+.portrait-splashes i:nth-child(1) {
+  width: 49%;
+  left: 7%;
+  top: 14%;
+  rotate: -14deg;
+  -webkit-mask: url("/effects/portrait-splash-2.svg") center / contain no-repeat;
+  mask: url("/effects/portrait-splash-2.svg") center / contain no-repeat;
+}
+
+.portrait-splashes i:nth-child(2) {
+  width: 43%;
+  right: 7%;
+  top: 10%;
+  rotate: 19deg;
+  animation-delay: .14s;
+  -webkit-mask: url("/effects/portrait-splash-3.svg") center / contain no-repeat;
+  mask: url("/effects/portrait-splash-3.svg") center / contain no-repeat;
+}
+
+.portrait-splashes i:nth-child(3) {
+  width: 41%;
+  left: 10%;
+  bottom: 12%;
+  rotate: 12deg;
+  animation-delay: .06s;
+  -webkit-mask: url("/effects/portrait-splash-4.svg") center / contain no-repeat;
+  mask: url("/effects/portrait-splash-4.svg") center / contain no-repeat;
+}
+
+.portrait-splashes i:nth-child(4) {
+  width: 35%;
+  right: 12%;
+  bottom: 9%;
+  rotate: -22deg;
+  animation-delay: .21s;
+  -webkit-mask: url("/effects/portrait-splash-5.svg") center / contain no-repeat;
+  mask: url("/effects/portrait-splash-5.svg") center / contain no-repeat;
+}
+
+.portrait-kumori .portrait-splashes i {
+  filter: drop-shadow(0 0 1px rgb(17 16 24 / .3));
+}
+
+body .characters .tabs button.kumori {
+  --splash: #ffe8f1;
+}
+
+@keyframes portrait-splash-pop {
+  0% { opacity: 0; transform: scale(.12); }
+  58% { opacity: .98; transform: scale(1.12); }
+  78% { opacity: .9; transform: scale(.94); }
+  100% { opacity: .94; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-splashes i {
+    animation: none;
+    opacity: .94;
+  }
+}
+
+/* Splatoon-style English eyebrow and metadata lettering. */
+.eyebrow,
+.section-head > span,
+.archive-title > span,
+.kicker,
+.navlinks,
+.stats small,
+.profile footer small,
+.comic-art-slot small,
+.comic-card > div:last-child small,
+.collection-page > header span,
+.back,
+.footer p,
+.footer a {
+  font-family: var(--font-meta);
+  font-weight: 400;
+}
+
+/*
+ * TYPOGRAPHY ASSIGNMENT
+ * Change these four variables to reassign fonts across the site.
+ * Blitz fonts handle English; Source Han Sans TW handles Chinese.
+ * SpAlterna is reserved for the small labels below character icons.
+ */
+:root {
+  --font-display: "BlitzBold", "SourceHanSansTW", "Noto Sans TC", sans-serif;
+  --font-body: "BlitzMain", "SourceHanSansTW", "Noto Sans TC", sans-serif;
+  --font-meta: "BlitzMain", "SourceHanSansTW", "Noto Sans TC", sans-serif;
+  --font-ui: "BlitzMain", "SourceHanSansTW", "Noto Sans TC", sans-serif;
+  --font-icon-meta: "SpAlterna", monospace;
+}
+
+.tabs button b {
+  font-family: var(--font-icon-meta);
+  font-weight: 400;
+}
+
+.profile h3 i,
+.detail-grid h1 i {
+  font-family: "BlitzMain", sans-serif;
+  font-weight: 400;
+}
+
+.english-character-name {
+  font-family: "BlitzMain", sans-serif !important;
+  font-weight: 400;
+}
+
+.profile h3:not(.english-character-name),
+.detail-grid h1:not(.english-character-name) {
+  font-weight: 900;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+.archive-title h1,
+.section-head h2,
+.profile h3,
+.detail-grid h1,
+.detail-grid h2,
+.comic-card h3,
+.collection-page > header h1,
+.comic-chapter-title {
+  font-family: var(--font-display);
+}
+
+.profile-copy > p,
+.detail-grid article > p {
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+.readmore,
+.lang,
+.switch,
+.brand {
+  font-family: var(--font-ui);
+}
+
+/* Left-aligned numbered section headings. */
+.characters .section-head,
+.story .section-head {
+  display: block;
+  text-align: left;
+}
+
+/* Keep section titles and supporting headings compact and aligned to one edge. */
+.section-head h2 {
+  font-size: clamp(34px, 4.5vw, 64px) !important;
+  font-weight: 900 !important;
+  text-align: left;
+}
+
+/* Navigation typography uses the Splatoon-style BlitzMain face. */
+.nav,
+.nav a,
+.nav button,
+.navlinks,
+.mobile-site-menu,
+.mobile-site-menu button,
+.mobile-site-menu nav a {
+  font-family: "BlitzMain", sans-serif !important;
+  font-weight: 400 !important;
+}
+.archive-title h1 {
+  font-size: clamp(52px, 9vw, 124px) !important;
+}
+.profile h3 {
+  font-size: clamp(42px, 5.5vw, 76px) !important;
+}
+.detail-grid h1 {
+  font-size: clamp(56px, 8vw, 112px) !important;
+}
+
+/* Separate the two profile actions and make the network link secondary. */
+.characters .relationship-link {
+  margin-top: 28px !important;
+  background: #fff !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--ink);
+  box-shadow: none !important;
+}
+.characters .relationship-link span {
+  color: var(--ink) !important;
+}
+
+/* High-contrast character navigation arrows. */
+.characters .switch,
+.characters .switch:hover {
+  position: relative;
+  z-index: 10;
+  background: var(--ink);
+  color: #fff;
+}
+
+/*
+ * MOBILE CHARACTER IMAGE ADJUSTMENTS (screens 800px wide or smaller)
+ * Change scale, horizontal position (x), and vertical position (y) here.
+ */
+@media (max-width: 800px) {
+  .characters .portrait-yuuhi, .characters .portrait-shuu,
+  .characters .portrait-akane, .characters .portrait-sumire, .characters .portrait-kumori { --art-scale: 1.04; --art-x: 0px; --art-y: 0px; }
+  .characters .portrait-musubi { --art-scale: 1.06; --art-x: 0px; --art-y: 0px; }
+
+  .detail .portrait-yuuhi  { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+  .detail .portrait-musubi { --art-scale: 0.8; --art-x: 0px; --art-y: 0px; }
+  .detail .portrait-shuu   { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+  .detail .portrait-akane  { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+  .detail .portrait-sumire { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+  .detail .portrait-kumori { --art-scale: 1.00; --art-x: 0px; --art-y: 0px; }
+}
+
+/* Custom cursor: hotspot follows the triangle tip in the top-left corner. */
+html,
+body,
+.fluid-canvas {
+  cursor: url("/cursors/citrusoda-cursor.png") 1 1, auto;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: url("/cursors/citrusoda-cursor.png") 1 1, pointer;
+}
+
+/* Static header placeholder with a dark image overlay. */
+.archive-title { background: #d4d4d4 !important; }
+.header-image-placeholder,
+.header-overlay { position: absolute; inset: 0; }
+.header-image-placeholder { background: linear-gradient(135deg, #f1f1f1 0%, #bcbcbc 48%, #e4e4e4 100%); }
+.header-overlay { background: rgb(0 0 0 / .62); }
+.archive-title > span { display: none !important; }
+.archive-title h1 { color: #fff !important; mix-blend-mode: normal !important; }
+.archive-title h1 i { color: #fff !important; }
+
+/* Interactive relationship network. */
+.relationship-link {
+  margin: 48px auto 0 0;
+}
+
+/* Manual Musubi image sizing. Change 0.93 to 1.00 for the original size. */
+.characters .portrait-musubi { --art-scale: 1.08; }
+.detail .portrait-musubi { --art-scale: .93; }
+
+/* Keep every full-body portrait centered inside its container. */
+.characters .portrait .character-art,
+.detail .detail-portrait .character-art {
+  object-position: center center !important;
+}
+
+/* Compact header proportions. */
+.archive-title { min-height: 48vh !important; padding-top: 8vh !important; padding-bottom: 6vh !important; }
+.archive-title h1 { margin-top: 4vh !important; margin-bottom: 2vh !important; }
+@media (max-width: 800px) {
+  .archive-title { min-height: 42vh !important; padding-top: 7vh !important; }
+  .archive-title h1 { margin-top: 4vh !important; }
+}
+
+/* Keep the archive from stretching too wide on large displays. */
+body > main {
+  width: min(1440px, calc(100% - 48px));
+  margin-inline: auto;
+  overflow: visible;
+}
+
+/* The navigation and footer remain full-bleed while the page content stays contained. */
+body { overflow-x: hidden; }
+body > main > .nav,
+body > main > .footer {
+  width: 100vw;
+  margin-left: calc((100% - 100vw) / 2);
+}
+
+body > main > .archive-title {
+  width: 100vw;
+  margin-left: calc((100% - 100vw) / 2);
+}
+
+@media (max-width: 800px) {
+  body > main {
+    width: 100%;
+  }
+
+  body > main > .nav,
+  body > main > .footer,
+  body > main > .archive-title {
+    margin-left: 0;
+  }
+}
+
+/* Character profile package layout. */
+.profile-page { background: #fff; min-height:100vh; }
+.profile-back { display:inline-block; margin:42px 5vw 24px; font:600 15px var(--font-body); }
+.profile-frame { width:min(1220px,90vw); margin:20px auto 0; display:grid; grid-template-columns:80px minmax(260px,1fr) minmax(360px,.95fr); gap:28px; align-items:center; }
+.profile-icons { display:flex; flex-direction:column; align-items:center; gap:22px; }
+.profile-icons a { width:54px; height:54px; opacity:.28; transition:opacity .2s,transform .2s; }
+.profile-icons a.active { opacity:1; transform:scale(1.1); }
+.profile-icons a:hover { opacity:.8; transform:scale(1.06); }
+.profile-icons img { width:100%; height:100%; object-fit:contain; }
+.profile-portrait-col { display:grid; grid-template-columns:42px minmax(0,1fr) 42px; gap:12px; align-items:center; }
+.profile-portrait { grid-column:2; width:100%; height:62vh; min-height:480px; margin:0; background:transparent; border-radius:0; box-shadow:none; overflow:visible !important; }
+.profile-portrait:before,.profile-portrait:after { display:none; }
+.profile-arrow { width:40px; height:40px; display:grid; place-items:center; background:#ddd; color:#444; border-radius:50%; font:32px/1 var(--font-ui); }
+.profile-arrow:hover { background:var(--ink); color:#fff; }
+.profile-card { position:relative; background:#fff !important; border:2px solid var(--ink); border-radius:22px; padding:76px 42px 42px; min-height:500px; box-shadow:14px 14px 0 rgb(17 16 24 / .18); }
+.package-hole { position:absolute; top:24px; left:50%; transform:translateX(-50%); width:126px; height:28px; border:2px solid rgb(17 16 24 / .25); border-radius:30px; background:transparent; }
+.package-hole:before { content:""; position:absolute; width:28px; height:28px; border:2px solid rgb(17 16 24 / .25); border-radius:50%; background:transparent; left:47px; top:-14px; }
+.profile-card h1 { margin:0 0 22px; font:800 clamp(44px,5vw,70px)/.9 var(--font-display); letter-spacing:-.06em; }
+.profile-card h1 i { display:block; margin-top:12px; font:700 14px var(--font-ui); letter-spacing:4px; }
+.profile-meta { display:flex; flex-wrap:wrap; gap:5px 10px; font:600 16px/1.25 var(--font-body); }
+.profile-meta span { display:block; }
+.profile-meta span:nth-child(-n+3) b { display:none; }
+.profile-meta span:nth-child(1)::after,
+.profile-meta span:nth-child(2)::after { content:" /"; margin-left:6px; }
+.profile-meta span:nth-child(n+4) { width:100%; }
+.profile-meta b { font-weight:700; }
+.profile-card hr { border:0; border-top:2px solid var(--ink); margin:28px 0 18px; }
+.profile-card h2 { margin:0 0 6px; font:700 17px var(--font-body); }
+.profile-card p,.profile-story p { margin:0; font:400 16px/1.7 var(--font-body); }
+.profile-swatches { display:flex; gap:34px; }
+.profile-swatches div { display:flex; align-items:center; gap:10px; }
+.profile-swatches b { font:700 15px var(--font-body); white-space:nowrap; }
+.profile-swatches span { width:22px; height:22px; border-radius:50%; background:#666; }
+.profile-swatches div:first-child span:first-of-type { background:var(--accent); }
+.profile-swatches div:first-child span:last-child { background:#f58bb6; }
+.profile-swatches div:last-child span:first-of-type { background:#ffd52f; }
+.profile-swatches div:last-child span:last-child { background:#4cead7; }
+.profile-story { width:min(1220px,90vw); margin:54px auto 100px; }
+.profile-story h2 { margin:0 0 8px; font:800 clamp(38px,5vw,62px)/1 var(--font-display); letter-spacing:-.05em; }
+
+/* Profile transitions and per-character light ink card colours. */
+.profile-arrow { display:none; }
+.profile-portrait-col { display:block; }
+.profile-portrait { width:100%; }
+.profile-portrait .character-art { width:100%; height:100%; max-width:100%; margin:0; padding:0; object-fit:contain; object-position:center center; }
+.profile-page.orange .profile-card { background:#ffe0d6; }
+.profile-page.pink .profile-card { background:#ffddea; }
+.profile-page.teal .profile-card { background:#d8f6f1; }
+.profile-page.violet .profile-card { background:#e8ddff; }
+.profile-page.red .profile-card { background:#ffdada; }
+.profile-page.pearl .profile-card { background:#ffe8f1; }
+.profile-page.teal .profile-card { background:#ffddea; }
+.profile-page .profile-card { background:#fff !important; }
+.profile-page .profile-portrait .character-art { animation:none !important; }
+.profile-page .portrait-musubi .character-art { transform:scale(.84) !important; }
+/* Manual profile portrait sizing: edit each value independently. */
+.profile-page .portrait-yuuhi  { --profile-art-scale: 1; }
+.profile-page .portrait-musubi { --profile-art-scale: .70; } /* Musubi is intentionally separate. */
+.profile-page .portrait-shuu   { --profile-art-scale: 1; }
+.profile-page .portrait-sumire { --profile-art-scale: 1; }
+.profile-page .portrait-akane  { --profile-art-scale: 1; }
+.profile-page .portrait-kumori { --profile-art-scale: 1; }
+.profile-page .profile-portrait .character-art { transform:scale(var(--profile-art-scale, 1)) !important; }
+
+/* Filterable gallery framework. */
+.gallery-shell { width:min(1320px,92vw); margin:0 auto; padding:34px 0 110px; }
+.gallery-shell > .back { margin:0; }
+.gallery-shell > h1 { margin:38px 0 34px; font:800 clamp(54px,7vw,92px)/1 var(--font-display); letter-spacing:-.06em; }
+.gallery-layout { display:grid; grid-template-columns:190px minmax(0,1fr); gap:28px; align-items:start; }
+.gallery-filters { position:sticky; top:24px; padding:18px 16px 22px; background:#fff; border:2px solid var(--ink); border-radius:16px; box-shadow:7px 7px 0 rgb(17 16 24 / .25); }
+.gallery-filters h2 { margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid var(--ink); font:700 28px/1 var(--font-ui); }
+.filter-group { margin-top:18px; }
+.filter-group > b { display:block; margin-bottom:9px; font:700 14px var(--font-body); }
+.filter-options { display:flex; flex-wrap:wrap; gap:7px; }
+.filter-options button { border:1px solid #aaa; background:#fff; border-radius:99px; padding:5px 9px; font:600 11px var(--font-body); }
+.filter-options button.active { background:var(--ink); color:#fff; border-color:var(--ink); }
+.filter-options.years button { border:0; border-radius:0; padding:3px 5px; }
+.filter-options.years button.active { background:var(--lime); color:var(--ink); }
+.character-filter { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.character-filter button { aspect-ratio:1; padding:4px; border:0; background:transparent; opacity:.35; }
+.character-filter button.active { opacity:1; transform:scale(1.08); }
+.character-filter img { width:100%; height:100%; object-fit:contain; }
+.gallery-package { position:relative; padding:72px 34px 34px; background:#4b4b4b; border-radius:20px; box-shadow:10px 10px 0 rgb(17 16 24 / .25); }
+.gallery-handle { position:absolute; top:22px; left:50%; transform:translateX(-50%); width:74px; height:18px; border-radius:99px; background:#fff; }
+.gallery-handle:before { content:""; position:absolute; left:29px; top:-10px; width:18px; height:18px; border-radius:50%; background:#fff; }
+.gallery-art-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:18px 12px; }
+.gallery-art-grid figure { margin:0; min-width:0; }
+.gallery-art-grid figure > div { aspect-ratio:1; overflow:hidden; background:#fff; }
+.gallery-art-grid img { width:100%; height:100%; padding:6px; object-fit:contain; }
+.gallery-art-grid figcaption { display:none; }
+.gallery-empty { grid-column:1/-1; margin:40px 0; color:#fff; text-align:center; font:600 15px var(--font-body); }
+@media(max-width:900px){.gallery-art-grid{grid-template-columns:repeat(3,1fr)}.gallery-layout{grid-template-columns:160px 1fr}}
+@media(max-width:650px){.gallery-layout{grid-template-columns:1fr}.gallery-filters{position:relative;top:auto}.gallery-art-grid{grid-template-columns:repeat(2,1fr)}.gallery-package{padding:62px 18px 22px}}
+
+/* Gallery interaction polish. */
+.character-filter button { width:34px; height:34px; justify-self:center; }
+.gallery-art-grid figure > div { border:2px solid var(--ink); box-shadow:6px 6px 0 rgb(17 16 24 / .28); }
+.gallery-package { transform-origin:50% 0; animation:gallery-package-swing .8s cubic-bezier(.22,.8,.28,1.12) both; }
+.gallery-art-grid figure { animation:gallery-art-fade .42s ease-out both; }
+.gallery-art-grid figure:nth-child(2){animation-delay:.05s}.gallery-art-grid figure:nth-child(3){animation-delay:.1s}.gallery-art-grid figure:nth-child(4){animation-delay:.15s}.gallery-art-grid figure:nth-child(5){animation-delay:.2s}.gallery-art-grid figure:nth-child(6){animation-delay:.25s}
+@keyframes gallery-package-swing{0%{opacity:0;transform:translateY(-18px) rotate(-2.5deg)}55%{opacity:1;transform:translateY(3px) rotate(1deg)}100%{opacity:1;transform:none}}
+@keyframes gallery-art-fade{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.filter-options button { position:relative; z-index:0; isolation:isolate; }
+.filter-options button.active { background:transparent; color:var(--ink); border-color:transparent; }
+.filter-options.years button.active { background:transparent; }
+.filter-options button.active:before { content:""; position:absolute; z-index:-1; inset:-10px -12px; background:var(--lime); -webkit-mask:url("/effects/portrait-splash-2.svg") center/100% 100% no-repeat; mask:url("/effects/portrait-splash-2.svg") center/100% 100% no-repeat; animation:filter-splash-pop .3s ease-out both; }
+@keyframes filter-splash-pop{from{opacity:0;transform:scale(.4) rotate(-8deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.gallery-filter-toggle { display:none; align-items:center; gap:9px; margin:0 0 16px; padding:10px 14px; border:2px solid var(--ink); background:#fff; box-shadow:4px 4px 0 var(--ink); font:700 13px var(--font-ui); }
+.gallery-filter-toggle span { font-size:18px; }
+@media(prefers-reduced-motion:reduce){.gallery-package,.gallery-art-grid figure,.filter-options button.active:before{animation:none}}
+@media(max-width:650px){
+ .gallery-filter-toggle{display:inline-flex}
+ .gallery-filters{display:none}
+ .gallery-filters.open{display:block;animation:gallery-filter-open .24s ease-out both}
+ @keyframes gallery-filter-open{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+}
+
+/* Mobile site navigation. */
+.mobile-site-menu { display:none; }
+@media(max-width:800px){
+ .mobile-site-menu { display:block; position:fixed; z-index:1000; top:8px; right:18px; }
+ .nav { justify-content:flex-start; padding-right:72px; }
+ .nav .brand { flex:0 1 auto; }
+ .nav .lang { margin-left:12px; margin-right:auto; }
+ .mobile-site-menu > button { width:42px; height:42px; display:grid; align-content:center; gap:5px; padding:9px; border:2px solid var(--ink); border-radius:50%; background:#fff; box-shadow:4px 4px 0 var(--ink); }
+ .mobile-site-menu > button span { display:block; height:2px; background:var(--ink); }
+ .mobile-site-menu nav { position:absolute; right:0; top:52px; min-width:190px; display:none; padding:12px; border:2px solid var(--ink); background:#fff; box-shadow:7px 7px 0 var(--ink); }
+ .mobile-site-menu.open nav { display:grid; animation:mobile-menu-in .2s ease-out both; }
+ .mobile-site-menu nav a { padding:11px 8px; border-bottom:1px solid #ddd; font:700 13px var(--font-ui); }
+ .mobile-site-menu nav a:last-child { border-bottom:0; }
+ @keyframes mobile-menu-in { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:none} }
+}
+
+/* Continuous comic reader. Replace each placeholder with a page image later. */
+.comic-reader-shell { width:min(980px,92vw); margin:0 auto; padding:34px 0 110px; }
+.comic-reader-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin:42px 0 28px; }
+.comic-reader-head h1 { margin:0; font:800 clamp(44px,7vw,82px)/.95 var(--font-display); letter-spacing:-.05em; }
+.comic-reader-head p { margin:0; font:600 13px var(--font-ui); letter-spacing:1px; }
+.comic-reader-pages { width:min(760px,100%); margin:0 auto; display:grid; gap:24px; }
+.comic-reader-page { min-height:clamp(520px,105vw,1060px); display:grid; place-items:center; border:3px solid var(--ink); background:#fff; box-shadow:12px 12px 0 #f0df2f; }
+.comic-reader-page span { font:600 13px var(--font-ui); color:#777; letter-spacing:1px; }
+.reader-chapter-nav { position:sticky; z-index:20; bottom:20px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; width:min(760px,100%); margin:42px auto 0; padding:12px; border:2px solid var(--ink); background:rgb(255 255 255 / .94); box-shadow:7px 7px 0 var(--ink); backdrop-filter:blur(8px); }
+.reader-chapter-nav a { display:flex; align-items:center; gap:9px; padding:10px 12px; font:600 13px var(--font-ui); }
+.reader-chapter-nav a:last-child { justify-content:flex-end; }
+.reader-chapter-nav .disabled { opacity:.25; pointer-events:none; }
+.reader-chapter-nav b { font:700 13px var(--font-ui); }
+@media(max-width:650px){
+ .comic-reader-head { display:block; }
+ .comic-reader-head p { margin-top:12px; }
+ .comic-reader-page { min-height:130vw; }
+ .reader-chapter-nav { bottom:12px; }
+ .reader-chapter-nav a { font-size:0; }
+ .reader-chapter-nav a span { font-size:24px; }
+}
+
+/* Gallery clickable artwork and lightbox. */
+.gallery-filters .filter-options button { border:0; }
+.gallery-art-button { width:100%; aspect-ratio:1; display:block; padding:0; overflow:hidden; border:2px solid var(--ink); background:#fff; box-shadow:7px 7px 0 #f0df2f; transition:transform .2s,box-shadow .2s; }
+.gallery-art-button:hover { transform:rotate(-2.5deg) translateY(-3px); box-shadow:10px 10px 0 #f0df2f; }
+.gallery-art-button img { width:100%; height:100%; padding:6px; object-fit:contain; }
+.gallery-lightbox { position:fixed; z-index:2000; inset:0; display:grid; grid-template-columns:72px minmax(0,900px) 72px; align-items:center; justify-content:center; gap:18px; padding:32px; background:rgb(0 0 0 / .86); animation:lightbox-in .22s ease-out both; }
+.lightbox-image { max-height:88vh; display:grid; justify-items:center; color:#fff; }
+.lightbox-image img { max-width:100%; max-height:80vh; object-fit:contain; background:#fff; border:3px solid #fff; box-shadow:12px 12px 0 #f0df2f; }
+.lightbox-image p { margin:18px 0 0; font:700 13px var(--font-ui); letter-spacing:1px; }
+.lightbox-arrow,.lightbox-close { border:0; background:#fff; color:var(--ink); }
+.lightbox-arrow { width:58px; height:58px; border-radius:50%; font:42px/1 var(--font-ui); }
+.lightbox-close { position:absolute; top:22px; right:26px; width:46px; height:46px; border-radius:50%; font:34px/1 var(--font-ui); }
+@keyframes lightbox-in { from{opacity:0} to{opacity:1} }
+@media(max-width:650px){.gallery-lightbox{grid-template-columns:42px minmax(0,1fr) 42px;gap:8px;padding:20px 10px}.lightbox-arrow{width:40px;height:40px;font-size:30px}.lightbox-close{top:12px;right:12px}}
+
+/* Comics archive rows. */
+.comics-shell { width:min(1180px,92vw); margin:0 auto; padding:34px 0 110px; }
+.comics-shell > .back { margin:0; }
+.comics-shell > h1 { margin:42px 0 24px; font:800 clamp(56px,7vw,92px)/1 var(--font-display); letter-spacing:-.06em; }
+.comic-sort { margin-bottom:16px; font:700 11px var(--font-ui); letter-spacing:1px; }
+.comic-sort button { margin-left:6px; padding:4px 7px; border:0; border-bottom:1px solid var(--ink); background:transparent; font:inherit; }
+.comic-chapter-list { display:grid; gap:32px; }
+.comic-chapter-row { display:grid; grid-template-columns:220px minmax(0,1fr) 72px; min-height:132px; align-items:stretch; border:3px solid var(--ink); background:#fff; box-shadow:12px 12px 0 #ddd; transition:transform .2s,box-shadow .2s; }
+.comic-chapter-row:hover { transform:translate(-3px,-3px) rotate(-.25deg); box-shadow:15px 15px 0 #f0df2f; }
+.comic-chapter-preview { display:grid; place-items:center; background:#d2d2d2; border-right:3px solid var(--ink); }
+.comic-chapter-preview span { font:600 12px var(--font-body); }
+.comic-chapter-title { display:flex; align-items:center; gap:20px; padding:24px 30px; }
+.comic-chapter-title b { font:500 clamp(32px,4vw,52px)/1 var(--font-ui); }
+.comic-chapter-title span { font:600 clamp(22px,3vw,38px)/1.1 var(--font-body); }
+.comic-chapter-row > i { display:grid; place-items:center; font:400 50px/1 var(--font-ui); font-style:normal; }
+@media(max-width:700px){
+ .comic-chapter-row { grid-template-columns:105px minmax(0,1fr) 44px; min-height:96px; box-shadow:7px 7px 0 #ddd; }
+ .comic-chapter-title { display:grid; gap:3px; padding:14px; }
+ .comic-chapter-title b { font-size:28px; }
+ .comic-chapter-title span { font-size:17px; }
+ .comic-chapter-row > i { font-size:32px; }
+ .comic-chapter-preview span { font-size:9px; text-align:center; }
+}
+.profile-card { transform-origin:50% 0; animation:profile-card-swing .8s cubic-bezier(.22,.8,.28,1.15) both; }
+.profile-card > *:not(.package-hole) { animation:profile-copy-in .45s ease-out .28s both; }
+@keyframes profile-card-swing { 0% { opacity:0; transform:translateY(-22px) rotate(-3deg); } 55% { opacity:1; transform:translateY(4px) rotate(1.5deg); } 100% { opacity:1; transform:translateY(0) rotate(0); } }
+@keyframes profile-copy-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce) { .profile-card,.profile-card > *:not(.package-hole) { animation:none; } }
+@media (max-width:800px) {
+  .profile-frame { grid-template-columns:1fr; gap:22px; }
+  .profile-icons { order:0; flex-direction:row; justify-content:center; gap:8px; }
+  .profile-icons a { width:42px; height:42px; }
+  .profile-portrait-col { order:1; }
+  .profile-portrait .character-art { width:100%; height:100%; margin:0; }
+  .profile-card { order:2; padding:64px 25px 30px; }
+  .profile-meta { gap:3px 8px; font-size:14px; }
+  .profile-story { margin-top:38px; }
+}
+
+
+.relationship-page {
+  min-height: 100vh;
+}
+
+.relationship-shell {
+  width: min(1280px, 92vw);
+  margin: 0 auto;
+  padding: 28px 0 100px;
+}
+
+.relationship-shell > .back {
+  margin: 0;
+}
+
+.relationship-shell > header {
+  padding: 60px 0 34px;
+}
+
+.relationship-shell > header small {
+  font-family: var(--font-meta);
+  letter-spacing: 2px;
+}
+
+.relationship-shell > header h1 {
+  margin: 12px 0 0;
+  font: 900 clamp(48px, 9vw, 120px)/.85 var(--font-display);
+  letter-spacing: -.06em;
+}
+
+.network-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 340px);
+  gap: clamp(24px, 4vw, 58px);
+  align-items: stretch;
+}
+
+.network-board {
+  position: relative;
+  min-height: 650px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 34px;
+  background: rgb(255 255 255 / .82);
+  box-shadow: 10px 10px 0 var(--ink);
+}
+
+.network-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.network-lines .relationship-edge {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke: #111018;
+  stroke-width: 2;
+  opacity: .65;
+  transition: stroke .2s, stroke-width .2s;
+}
+
+.network-lines .relationship-edge.active {
+  stroke: var(--ink);
+  stroke-width: 3;
+  opacity: 1;
+  stroke-dasharray: none;
+}
+
+.network-lines .relationship-edge.feeling { stroke: #ff303e; }
+.network-edge-label { position: absolute; transform: translate(-50%, -50%); pointer-events: none; font: 400 13px var(--font-body); background: #ffffffdf; padding: 2px 4px; border-radius: 4px; white-space: nowrap; }
+.network-edge-label.feeling { color: #e32638; }
+
+.network-node {
+  position: absolute;
+  z-index: 2;
+  width: clamp(72px, 9vw, 112px);
+  aspect-ratio: 1;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  transition: transform .18s;
+}
+
+.network-node::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -17%;
+  background: var(--node-color);
+  opacity: 0;
+  transform: scale(.6) rotate(-12deg);
+  transition: opacity .18s, transform .25s;
+  -webkit-mask: url("/effects/ink-splash.svg") center / contain no-repeat;
+  mask: url("/effects/ink-splash.svg") center / contain no-repeat;
+}
+
+.network-node.active {
+  transform: translate(-50%, -50%) scale(1.14) rotate(4deg);
+}
+
+.network-node.active::before {
+  opacity: 1;
+  transform: scale(1) rotate(-5deg);
+}
+
+.network-node img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: network-swim 4.8s ease-in-out infinite;
+}
+
+.network-node:nth-of-type(3n) img { animation-delay: -1.6s; }
+.network-node:nth-of-type(4n) img { animation-delay: -3.1s; }
+@keyframes network-swim {
+  0%, 100% { transform: translateY(0) rotate(-2deg) scaleX(1); }
+  25% { transform: translateY(-3px) rotate(2deg) scaleX(1.04); }
+  50% { transform: translateY(1px) rotate(-1deg) scaleX(.96); }
+  75% { transform: translateY(-2px) rotate(2deg) scaleX(1.02); }
+}
+
+.network-node b {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  font: 400 11px var(--font-icon-meta);
+  letter-spacing: 1px;
+}
+
+.relationship-panel {
+  position: relative;
+  width: 100%;
+  max-height: none;
+  overflow: visible;
+  animation: network-panel-in .22s ease-out;
+  padding: 30px;
+  border: 2px solid var(--ink);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 9px 9px 0 var(--node-color);
+}
+
+.network-controls { position: absolute; z-index: 5; top: 18px; left: 20px; right: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
+.network-controls button, .network-close { border: 0; background: var(--ink); color: #fff; border-radius: 18px; padding: 8px 14px; font: inherit; }
+.network-close { float: right; font-size: 22px; line-height: 1; }
+.network-node { touch-action: none; }
+.network-node img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.network-node:focus-visible { outline: 3px solid var(--ink); border-radius: 20px; }
+@keyframes network-panel-in { from { opacity: 0; translate: 24px 0; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) { .relationship-panel { animation: none; } .network-node, .network-node img { transition: none; animation: none; } }
+@media (max-width: 600px) { .network-controls { font-size: 12px; } .network-layout .relationship-panel { position: relative; width: 100%; max-height: none; } }
+
+.relationship-panel > small {
+  font: 400 11px var(--font-meta);
+  letter-spacing: 1px;
+}
+
+.relationship-avatar {
+  display: block;
+  width: clamp(96px, 12vw, 142px);
+  height: clamp(96px, 12vw, 142px);
+  margin: 8px auto 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 0 color-mix(in srgb, var(--node-color) 55%, transparent));
+}
+
+.relationship-panel h2 {
+  margin: 18px 0 32px;
+  font: 900 clamp(50px, 6vw, 78px)/.8 var(--font-display);
+}
+
+.relationship-panel h2 i {
+  display: block;
+  margin-top: 16px;
+  font: 400 15px var(--font-body);
+  letter-spacing: 4px;
+  color: var(--node-color);
+}
+
+.relationship-list {
+  display: grid;
+  gap: 10px;
+}
+
+.relationship-list button {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #d8d5dc;
+  border-radius: 15px;
+  background: #fff;
+  text-align: left;
+}
+
+.relationship-list button:hover {
+  border-color: var(--ink);
+}
+
+.relationship-list img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.relationship-list span,
+.relationship-list small {
+  display: block;
+}
+
+.relationship-list b {
+  font-family: var(--font-body);
+}
+
+.relationship-list small {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.relationship-panel .readmore {
+  margin-top: 34px;
+}
+
+@media (max-width: 800px) {
+  .network-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .network-board {
+    min-height: 520px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .network-node {
+    width: clamp(62px, 20vw, 90px);
+  }
+
+  .relationship-panel {
+    box-shadow: 6px 6px 0 var(--node-color);
   }
 }
