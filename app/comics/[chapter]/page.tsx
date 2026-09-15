@@ -1,6 +1,7 @@
 "use client";
 
 import {useParams} from "next/navigation";
+import {sitePath} from "../../sitePath";
 
 const chapterCount = 3;
 
@@ -13,11 +14,11 @@ export default function ComicReaderPage() {
 
   return <main className="notebook-page comics-page">
     <nav className="nav">
-      <a className="brand" href="/"><span>CITRUSODA</span> OC ARCHIVE</a>
-      <div className="navlinks"><a href="/#characters">CHARACTERS</a><a href="/comics">COMICS</a><a href="/gallery">GALLERY</a></div>
+      <a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a>
+      <div className="navlinks"><a href={sitePath("/#characters")}>CHARACTERS</a><a href={sitePath("/comics")}>COMICS</a><a href={sitePath("/gallery")}>GALLERY</a></div>
     </nav>
     <section className="comic-reader-shell">
-      <a className="back" href="/comics">← ALL CHAPTERS</a>
+      <a className="back" href={sitePath("/comics")}>← ALL CHAPTERS</a>
       <header className="comic-reader-head">
         <h1>#{String(current).padStart(2, "0")} Chapter Name</h1>
         <p>CHAPTER {current} / {chapterCount}</p>
@@ -28,11 +29,11 @@ export default function ComicReaderPage() {
         </div>)}
       </div>
       <nav className="reader-chapter-nav" aria-label="Chapter navigation">
-        <a className={previous ? "" : "disabled"} href={previous ? `/comics/chapter-${previous}` : "#"} aria-disabled={!previous}>
+        <a className={previous ? "" : "disabled"} href={previous ? sitePath(`/comics/chapter-${previous}`) : "#"} aria-disabled={!previous}>
           <span>←</span> PREVIOUS CHAPTER
         </a>
         <b>{current} / {chapterCount}</b>
-        <a className={next ? "" : "disabled"} href={next ? `/comics/chapter-${next}` : "#"} aria-disabled={!next}>
+        <a className={next ? "" : "disabled"} href={next ? sitePath(`/comics/chapter-${next}`) : "#"} aria-disabled={!next}>
           NEXT CHAPTER <span>→</span>
         </a>
       </nav>
