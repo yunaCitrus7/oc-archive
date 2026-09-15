@@ -682,7 +682,7 @@ body > main > .archive-title {
 .profile-arrow { width:40px; height:40px; display:grid; place-items:center; background:#ddd; color:#444; border-radius:50%; font:32px/1 var(--font-ui); }
 .profile-arrow:hover { background:var(--ink); color:#fff; }
 .profile-card { position:relative; background:#fff !important; border:2px solid var(--ink); border-radius:22px; padding:76px 42px 42px; min-height:500px; box-shadow:14px 14px 0 rgb(17 16 24 / .18); }
-.package-hole { position:absolute; top:16px; left:50%; transform:translateX(-50%); width:126px; aspect-ratio:482.51/202.18; border:0; background:url("/effects/package-handle.svg") center/contain no-repeat; }
+.package-hole { position:absolute; top:18px; left:50%; transform:translateX(-50%); width:100px; aspect-ratio:482.51/202.18; border:0; background:url("/effects/package-handle.svg") center/contain no-repeat; }
 .package-hole:before { display:none; }
 .profile-card h1 { margin:0 0 22px; font:800 clamp(44px,5vw,70px)/.9 var(--font-display); letter-spacing:-.06em; }
 .profile-card h1 i { display:block; margin-top:12px; font:700 14px var(--font-ui); letter-spacing:4px; }
@@ -706,12 +706,12 @@ body > main > .archive-title {
 .profile-swatches div:last-child span:last-child { background:var(--eye-color-2); }
 
 /* EDIT CHARACTER SWATCH COLORS HERE: ink 1/2, then eye 1/2. */
-.profile-page.orange { --ink-color-1:#ff672f; --ink-color-2:#7652f3; --eye-color-1:#189eea; --eye-color-2:#1267bd; }
-.profile-page.pink { --ink-color-1:#ff4f98; --ink-color-2:#4cead7; --eye-color-1:#ffd52f; --eye-color-2:#d91b72; }
-.profile-page.teal { --ink-color-1:#ff78b5; --ink-color-2:#4cead7; --eye-color-1:#ffd52f; --eye-color-2:#d91b72; }
-.profile-page.violet { --ink-color-1:#7652f3; --ink-color-2:#e044d5; --eye-color-1:#687069; --eye-color-2:#241631; }
-.profile-page.red { --ink-color-1:#e93935; --ink-color-2:#ff4f98; --eye-color-1:#78d900; --eye-color-2:#bd1670; }
-.profile-page.pearl { --ink-color-1:#ffe8f1; --ink-color-2:#f58bb6; --eye-color-1:#ff4f98; --eye-color-2:#4cead7; }
+.profile-page.orange { --ink-color-1:#ff672f; --ink-color-2:#7652f3; --eye-color-1:#189eea; --eye-color-2:#0c3865; }
+.profile-page.pink { --ink-color-1:#ff4f98; --ink-color-2:#a6ef7c; --eye-color-1:#ffd52f; --eye-color-2:#eb2980; }
+.profile-page.teal { --ink-color-1:#ff78b5; --ink-color-2:#a6ef7c; --eye-color-1:#ffd52f; --eye-color-2:#eb2980; }
+.profile-page.violet { --ink-color-1:#a568f5; --ink-color-2:#e044d5; --eye-color-1:#e2e2e2; --eye-color-2:#241631; }
+.profile-page.red { --ink-color-1:#e93935; --ink-color-2:#e8e8e8; --eye-color-1:#78d900; --eye-color-2:#bd1670; }
+.profile-page.pearl { --ink-color-1:#ffe8f1; --ink-color-2:#f58bb6; --eye-color-1:#ff4f98; --eye-color-2:#e3e1e2; }
 .profile-story { width:min(1220px,90vw); margin:54px auto 100px; }
 .profile-story h2 { margin:0 0 8px; font:800 clamp(38px,5vw,62px)/1 var(--font-display); letter-spacing:-.05em; }
 
@@ -1175,6 +1175,13 @@ body > main > .archive-title {
 .profile-extra li {
   margin: 0 0 10px;
   font: 400 16px/1.7 var(--font-body);
+}
+
+/* Keep Chinese punctuation and body copy in the same CJK typeface. */
+.profile-page.language-zh .profile-card p,
+.profile-page.language-zh .profile-story p,
+.profile-page.language-zh .profile-extra li {
+  font-family: "SourceHanSansTW", "Noto Sans TC", sans-serif;
 }
 
 @media (max-width: 700px) {

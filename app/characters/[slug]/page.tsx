@@ -25,7 +25,7 @@ export default function CharacterPage(){
  const {slug}=useParams<{slug:string}>();
  const id=profiles[slug]?slug:"yuuhi",p=profiles[id];
  const [en,setEn]=useState(false);
- return <main className={`detail profile-page ${p.tone}`}>
+ return <main className={`detail profile-page ${p.tone} ${en?"language-en":"language-zh"}`}>
   <nav className="nav"><a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a><button className="lang" onClick={()=>setEn(!en)}><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button></nav>
   <a className="profile-back" href={sitePath("/")}>&lt; {en?"Back to home page":"返回首頁"}</a>
   <section className="profile-frame">
