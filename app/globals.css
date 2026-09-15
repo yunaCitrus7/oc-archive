@@ -79,10 +79,10 @@ body .characters .tabs button.active::before {
 }
 
 body .characters .tabs button.yuuhi { --splash: #ff672f; }
-body .characters .tabs button.musubi { --splash: #ff4f98; }
+body .characters .tabs button.musubi { --splash: #ff79b1; }
 body .characters .tabs button.shuu { --splash: #ff78b5; }
 body .characters .tabs button.sumire { --splash: #7652f3; }
-body .characters .tabs button.akane { --splash: #e93935; }
+body .characters .tabs button.akane { --splash: #fa5351; }
 body .characters .tabs button.kumori { --splash: #fff; }
 
 body .characters .tabs button.active img {
@@ -349,11 +349,11 @@ body,
 }
 
 /* Supplied SVG ink splashes behind the large character artwork. */
-.portrait-yuuhi  { --portrait-ink: #ff672f; }
+.portrait-yuuhi  { --portrait-ink: #ff8254; }
 .portrait-musubi { --portrait-ink: #ff9bc4; }
 .portrait-shuu   { --portrait-ink: #ff78b5; }
-.portrait-sumire { --portrait-ink: #7652f3; }
-.portrait-akane  { --portrait-ink: #fe5350; }
+.portrait-sumire { --portrait-ink: #ad6aff; }
+.portrait-akane  { --portrait-ink: #ff6360; }
 .portrait-kumori { --portrait-ink: #ffe8f1; }
 
 .portrait-splashes {
@@ -606,7 +606,7 @@ button,
 .archive-title { background: #d4d4d4 !important; }
 .header-image-placeholder,
 .header-overlay { position: absolute; inset: 0; }
-.header-image-placeholder { background: linear-gradient(135deg, #f1f1f1 0%, #bcbcbc 48%, #e4e4e4 100%); }
+.header-image-placeholder { background: url('/header-photo.jpg') center / cover no-repeat; }
 .header-overlay { background: rgb(0 0 0 / .62); }
 .archive-title > span { display: none !important; }
 .archive-title h1 { color: #fff !important; mix-blend-mode: normal !important; }
