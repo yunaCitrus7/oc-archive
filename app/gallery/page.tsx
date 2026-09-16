@@ -12,7 +12,7 @@ export default function GalleryPage(){
  const move=(step:number)=>setLightbox(i=>i===null?0:(i+step+shown.length)%shown.length);
  useEffect(()=>{const key=(e:KeyboardEvent)=>{if(lightbox===null)return;if(e.key==="Escape")setLightbox(null);if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1)};window.addEventListener("keydown",key);return()=>window.removeEventListener("keydown",key)},[lightbox,shown.length]);
  return <main className="notebook-page gallery-page">
-  <nav className="nav"><a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a><div className="navlinks"><a href={sitePath("/#characters")}>CHARACTERS</a><a href={sitePath("/comics")}>COMICS</a></div></nav>
+  <nav className="nav"><a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a><div className="navlinks"><a href={sitePath("/#characters")}>角色介紹</a><a href={sitePath("/comics")}>漫畫合集</a><a href={sitePath("/gallery")}>繪畫合集</a></div></nav>
   <section className="gallery-shell"><a className="back" href={sitePath("/")}>← BACK TO ARCHIVE</a><h1>Gallery</h1>
    <button className="gallery-filter-toggle" type="button" aria-expanded={filterOpen} onClick={()=>setFilterOpen(!filterOpen)}><span>☰</span> FILTER</button>
    <div className="gallery-layout">

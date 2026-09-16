@@ -1,5 +1,7 @@
+import {chapters} from "../data";
+
 export function generateStaticParams() {
-  return ["chapter-1", "chapter-2", "chapter-3"].map(chapter => ({chapter}));
+  return chapters.map(({slug}) => ({chapter: slug}));
 }
 
 export default function ComicChapterLayout({children}: {children: React.ReactNode}) {
