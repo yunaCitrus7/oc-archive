@@ -836,10 +836,10 @@ body > main > .archive-title {
 .gallery-filters .filter-options button { border:0; }
 .gallery-art-button { width:100%; aspect-ratio:1; display:block; padding:0; overflow:hidden; border:2px solid var(--ink); background:#fff; box-shadow:7px 7px 0 #f0df2f; transition:transform .2s,box-shadow .2s; }
 .gallery-art-button:hover { transform:rotate(-2.5deg) translateY(-3px); box-shadow:10px 10px 0 #f0df2f; }
-.gallery-art-button img { width:100%; height:100%; padding:6px; object-fit:contain; }
+.gallery-art-button img, .gallery-art-button video { width:100%; height:100%; padding:6px; object-fit:contain; }
 .gallery-lightbox { position:fixed; z-index:2000; inset:0; display:grid; grid-template-columns:72px minmax(0,900px) 72px; align-items:center; justify-content:center; gap:18px; padding:32px; background:rgb(0 0 0 / .86); animation:lightbox-in .22s ease-out both; }
 .lightbox-image { max-height:88vh; display:grid; justify-items:center; color:#fff; }
-.lightbox-image img { max-width:100%; max-height:80vh; object-fit:contain; background:#fff; border:3px solid #fff; box-shadow:12px 12px 0 #f0df2f; }
+.lightbox-image img, .lightbox-image video { max-width:100%; max-height:80vh; object-fit:contain; background:#fff; border:3px solid #fff; box-shadow:12px 12px 0 #f0df2f; }
 .lightbox-image p { margin:18px 0 0; font:700 13px var(--font-ui); letter-spacing:1px; }
 .lightbox-arrow,.lightbox-close { border:0; background:#fff; color:var(--ink); }
 .lightbox-arrow { width:58px; height:58px; border-radius:50%; font:42px/1 var(--font-ui); }
