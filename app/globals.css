@@ -716,6 +716,18 @@ body > main > .archive-title {
 .profile-story { width:min(1220px,90vw); margin:54px auto 100px; }
 .profile-story h2 { margin:0 0 8px; font:800 clamp(38px,5vw,62px)/1 var(--font-display); letter-spacing:-.05em; }
 
+/* Keep the desktop artwork frame aligned with the top of the profile card. */
+@media (min-width:801px) {
+  .profile-frame {
+    align-items:start;
+    /* Reserve the full-body artwork's visual height before the story begins. */
+    min-height:max(62vh, 680px);
+  }
+  .profile-portrait .character-art {
+    object-position:center top !important;
+  }
+}
+
 /* Profile transitions and per-character light ink card colours. */
 .profile-arrow { display:none; }
 .profile-portrait-col { display:block; }
@@ -732,12 +744,12 @@ body > main > .archive-title {
 .profile-page .profile-portrait .character-art { animation:none !important; }
 .profile-page .portrait-musubi .character-art { transform:scale(.84) !important; }
 /* Manual profile portrait sizing: edit each value independently. */
-.profile-page .portrait-yuuhi  { --profile-art-scale: 1; }
-.profile-page .portrait-musubi { --profile-art-scale: .70; } /* Musubi is intentionally separate. */
-.profile-page .portrait-shuu   { --profile-art-scale: 1; }
-.profile-page .portrait-sumire { --profile-art-scale: 1; }
-.profile-page .portrait-akane  { --profile-art-scale: 1; }
-.profile-page .portrait-kumori { --profile-art-scale: 1; }
+.profile-page .portrait-yuuhi  { --profile-art-scale: 0.9; }
+.profile-page .portrait-musubi { --profile-art-scale: 0.65; } /* Musubi is intentionally separate. */
+.profile-page .portrait-shuu   { --profile-art-scale: 0.9; }
+.profile-page .portrait-sumire { --profile-art-scale: 0.9; }
+.profile-page .portrait-akane  { --profile-art-scale: 0.9; }
+.profile-page .portrait-kumori { --profile-art-scale: 0.9; }
 .profile-page .profile-portrait .character-art { transform:scale(var(--profile-art-scale, 1)) !important; }
 
 /* Filterable gallery framework. */
@@ -878,7 +890,7 @@ body > main > .archive-title {
 @keyframes profile-copy-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion:reduce) { .profile-card,.profile-card > *:not(.package-hole) { animation:none; } }
 @media (max-width:800px) {
-  .profile-frame { grid-template-columns:1fr; gap:22px; }
+  .profile-frame { grid-template-columns:1fr; gap:20px; }
   .profile-icons { order:0; flex-direction:row; justify-content:center; gap:8px; }
   .profile-icons a { width:42px; height:42px; }
   .profile-portrait-col { order:1; }
