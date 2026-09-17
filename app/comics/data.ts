@@ -7,13 +7,23 @@ const titles = [
   "兄妹過去日常", "兄妹過去日常", "拍照", "意外？",
 ];
 
+const englishTitles = [
+  "First Meeting", "Living Together", "Debt Collection", "Doodle Shorts 1", "Turf War", "Hug Pillow", "Big Brother", "The Past",
+  "Salmon Run", "Pudding", "Flirting", "Doodle Shorts 2", "Valentine's Day", "Doodle Shorts 3", "The Siblings' Past — Hangover",
+  "Doodle Shorts 4", "At the Beach", "Doodle Shorts 5", "Kumori", "The Siblings' Past",
+  "The Siblings' Past", "The Siblings' Past", "Taking Photos", "An Accident?",
+];
+
 export const chapters = pageCounts.map((pageCount, index) => {
   const number = index + 1;
-  const folder = `ch-${String(number).padStart(2, "0")}`;
+  // Fresh asset addresses avoid cached pages from before the chapter renumbering.
+  // Chapters 20–24 correspond to original folders Ch 18–22, in numeric page order.
+  const folder = `ch-${String(number).padStart(2, "0")}${number >= 20 ? "-revised" : ""}`;
   return {
     number,
     slug: `chapter-${number}`,
     title: titles[index],
+    enTitle: englishTitles[index],
     pages: Array.from({length: pageCount}, (_, pageIndex) =>
       `/comics/${folder}/page-${String(pageIndex + 1).padStart(2, "0")}${number === 1 && pageIndex === 6 ? ".png" : ".jpg"}`
     ),

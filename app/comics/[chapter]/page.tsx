@@ -1,10 +1,12 @@
 "use client";
+import {useSiteLanguage} from "../../useSiteLanguage";
 
 import {useParams} from "next/navigation";
 import {sitePath} from "../../sitePath";
 import {chapters} from "../data";
 
 export default function ComicReaderPage() {
+ const {lang,en,setLang}=useSiteLanguage();
   const {chapter} = useParams<{chapter: string}>();
   const selected = chapters.find(item => item.slug === chapter) ?? chapters[0];
   const current = selected.number;
@@ -15,13 +17,13 @@ export default function ComicReaderPage() {
   return <main className="notebook-page comics-page">
     <nav className="nav">
       <a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a>
-      <div className="navlinks"><a href={sitePath("/#characters")}>角色介紹</a><a href={sitePath("/comics")}>漫畫合集</a><a href={sitePath("/gallery")}>繪畫合集</a></div>
+      <div className="navlinks"><a href={sitePath("/#characters")}>{en?"CHARACTERS":"角色介紹"}</a><a href={sitePath("/comics")}>{en?"COMICS":"漫畫合集"}</a><a href={sitePath("/gallery")}>{en?"GALLERY":"繪畫合集"}</a></div>
     </nav>
     <section className="comic-reader-shell">
       <a className="back" href={sitePath("/comics")}>← ALL CHAPTERS</a>
       <header className="comic-reader-head">
-        <h1>#{String(current).padStart(2, "0")} {selected.title}</h1>
-        <p>CHAPTER {current} / {chapterCount}</p>
+        <h1>#{String(current).padStart(2, "0")} {en?selected.enTitle:selected.title}</h1>
+        <p>CHAPTER {current} / {chapterCount}</p>{en&&<p className="comic-language-note">Comic pages are currently available in Chinese only.</p>}
       </header>
       <div className="comic-reader-pages">
         {selected.pages.map((page, index) => <div className="comic-reader-page" key={page}>
@@ -29,11 +31,11 @@ export default function ComicReaderPage() {
         </div>)}
       </div>
       <nav className="reader-chapter-nav" aria-label="Chapter navigation">
-        <a className={previous ? "" : "disabled"} href={previous ? sitePath(`/comics/chapter-${previous}`) : "#"} aria-disabled={!previous}>
+        <a className={previous ? "" : "disabled"} href={previous ? sitePath(`/comics/chapter-${previous}?lang=${lang}`) : "#"} aria-disabled={!previous}>
           <span>←</span> PREVIOUS CHAPTER
         </a>
         <b>{current} / {chapterCount}</b>
-        <a className={next ? "" : "disabled"} href={next ? sitePath(`/comics/chapter-${next}`) : "#"} aria-disabled={!next}>
+        <a className={next ? "" : "disabled"} href={next ? sitePath(`/comics/chapter-${next}?lang=${lang}`) : "#"} aria-disabled={!next}>
           NEXT CHAPTER <span>→</span>
         </a>
       </nav>

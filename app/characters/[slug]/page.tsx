@@ -1,5 +1,5 @@
 "use client";
-import {useState} from "react";
+import {useSiteLanguage} from "../../useSiteLanguage";
 import {useParams} from "next/navigation";
 import {sitePath} from "../../sitePath";
 const profiles:any={
@@ -28,12 +28,12 @@ const order=Object.keys(profiles);
 export default function CharacterPage(){
  const {slug}=useParams<{slug:string}>();
  const id=profiles[slug]?slug:"yuuhi",p=profiles[id];
- const [en,setEn]=useState(false);
+ const {lang,en,setLang}=useSiteLanguage();
  return <main className={`detail profile-page ${p.tone} ${en?"language-en":"language-zh"}`}>
-  <nav className="nav"><a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a><button className="lang" onClick={()=>setEn(!en)}><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button></nav>
+  <nav className="nav"><a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a><button className="lang" onClick={()=>setLang(en?"zh":"en")}><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button></nav>
   <a className="profile-back" href={sitePath("/")}>&lt; {en?"Back to home page":"返回首頁"}</a>
   <section className="profile-frame">
-   <aside className="profile-icons" aria-label="Choose character">{order.map(x=><a key={x} className={x===id?"active":""} href={sitePath(`/characters/${x}`)}><img src={sitePath(`/icons/${x}.svg`)} alt={profiles[x].roman}/></a>)}</aside>
+   <aside className="profile-icons" aria-label="Choose character">{order.map(x=><a key={x} className={x===id?"active":""} href={sitePath(`/characters/${x}?lang=${lang}`)}><img src={sitePath(`/icons/${x}.svg`)} alt={profiles[x].roman}/></a>)}</aside>
    <div className="profile-portrait-col"><div className={`portrait profile-portrait portrait-${id}`}><div className="portrait-splashes" aria-hidden="true"><i/><i/><i/><i/></div><img className="character-art" src={sitePath(`/characters/${id}.png`)} alt={`${p.name} ${p.roman}`}/></div></div>
    <article className="profile-card"><div className="package-hole" aria-hidden="true"/><h1>{en?p.roman:p.name}<i>{en?"":p.roman}</i></h1><div className="profile-meta"><span><b>{en?"Age":"年齡"}</b>{p.age}</span><span><b>{en?"Species":"種族"}</b>{en?p.enSpecies:p.species}</span><span><b>{en?"Sex":"性別"}</b>{en?p.enSex:p.sex}</span>{p.height&&<span><b>{en?"Height: ":"身高："}</b>{p.height}</span>}<span><b>{en?"Job: ":"職業："}</b>{en?p.enJob:p.job}</span><span><b>{en?"Weapon: ":"武器："}</b>{en?p.enWeapon:p.weapon}</span></div><hr/><h2>{en?"Description":"人物個性"}</h2><p>{en?p.enIntro:p.intro}</p><hr/><div className="profile-swatches"><div><b>{en?"Ink color":"墨水顏色"}</b><span/><span/></div><div><b>{en?"Eye color":"眼睛顏色"}</b><span/><span/></div></div></article>
   </section>

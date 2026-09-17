@@ -1,4 +1,5 @@
 "use client";
+import {useSiteLanguage} from "../useSiteLanguage";
 
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
@@ -40,7 +41,7 @@ export default function RelationshipsPage() {
   const drag = useRef<{ index: number; x: number; y: number; moved: boolean } | null>(null);
   const suppressClick = useRef(false);
   const [paused, setPaused] = useState(false);
-  const [lang, setLang] = useState<"zh" | "en">("zh");
+  const {lang, setLang} = useSiteLanguage();
   const en = lang === "en";
   const person = characters.find((item) => item.id === selected)!;
   const related = links.filter((link) => link.a === selected || link.b === selected);
@@ -165,7 +166,7 @@ export default function RelationshipsPage() {
               return <button key={index} onClick={() => setSelected(other.id)}><img src={sitePath(`/icons/${other.id}.svg`)} alt="" /><span><b>{other.roman}</b><small style={{ color: link.feeling ? "#d51e35" : undefined }}>{link.directed ? (link.a === selected ? "→ " : "← ") : "↔ "}{en ? link.en : link.zh}</small></span></button>;
             })}
           </div>
-          <a className="readmore" href={sitePath(`/characters/${person.id}`)}>{en ? "VIEW PROFILE" : "查看角色檔案"}<span>➜</span></a>
+          <a className="readmore" href={sitePath(`/characters/${person.id}?lang=${lang}`)}>{en ? "VIEW PROFILE" : "查看角色檔案"}<span>➜</span></a>
         </aside>}
       </div>
     </section>
