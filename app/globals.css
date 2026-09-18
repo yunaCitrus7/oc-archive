@@ -758,6 +758,10 @@ body > main > .archive-title {
 .gallery-shell > h1 { margin:38px 0 34px; font:800 clamp(54px,7vw,92px)/1 var(--font-display); letter-spacing:-.06em; }
 .gallery-layout { display:grid; grid-template-columns:190px minmax(0,1fr); gap:28px; align-items:start; }
 .gallery-filters { position:sticky; top:24px; padding:18px 16px 22px; background:#fff; border:2px solid var(--ink); border-radius:16px; box-shadow:7px 7px 0 rgb(17 16 24 / .25); }
+.gallery-art-grid figure {
+  content-visibility:auto;
+  contain-intrinsic-size:300px 260px;
+}
 .gallery-filters h2 { margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid var(--ink); font:700 28px/1 var(--font-ui); }
 .filter-group { margin-top:18px; }
 .filter-group > b { display:block; margin-bottom:9px; font:700 14px var(--font-body); }
