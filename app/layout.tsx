@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MobileNav from "./MobileNav";
 import {sitePath} from "./sitePath";
+import GoogleAnalytics from "./GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "CITRUSODA · Splatoon OC Archive",
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant">
       <body>
+        <GoogleAnalytics />
         {children}
         <MobileNav />
         <footer className="footer site-footer">
