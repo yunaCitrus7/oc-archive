@@ -601,6 +601,8 @@ a,
 button,
 [role="button"] {
   cursor: url("/cursors/citrusoda-cursor.png") 1 1, pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Static header placeholder with a dark image overlay. */
@@ -661,6 +663,11 @@ button,
 .characters .portrait .character-art,
 .detail .detail-portrait .character-art {
   object-position: center center !important;
+}
+
+/* Character art is decorative; its transparent canvas must not intercept taps. */
+.character-art {
+  pointer-events: none;
 }
 
 /* Compact header proportions. */
