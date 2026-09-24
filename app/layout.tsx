@@ -20,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-Hant">
+      <head>
+        <meta name="color-scheme" content="light" />
+      </head>
       <body>
         <GoogleAnalytics />
         {children}

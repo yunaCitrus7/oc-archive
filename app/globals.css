@@ -1,4 +1,10 @@
 @import "tailwindcss";
+
+/* Keep mobile browsers from auto-inverting the deliberately light site palette. */
+html {
+  color-scheme: only light;
+}
+
 @font-face {
   font-family: "SpAlterna";
   src: url("/fonts/SpAlterna-Regular.otf") format("opentype");
