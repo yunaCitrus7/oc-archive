@@ -1,7 +1,6 @@
 "use client";
 import {useEffect,useState} from "react";
 import {sitePath} from "../sitePath";
-import Link from "next/link";
 import {galleryFiles} from "./data";
 
 const characters=["musubi","yuuhi","shuu","akane","sumire","kumori"];
@@ -31,8 +30,8 @@ export default function GalleryPage(){
  useEffect(()=>{const sync=()=>setLang(localStorage.getItem("site-language")==="en"?"en":"zh");sync();window.addEventListener("site-language-change",sync);return()=>window.removeEventListener("site-language-change",sync)},[]);
  useEffect(()=>{const key=(e:KeyboardEvent)=>{if(lightbox===null)return;if(e.key==="Escape")setLightbox(null);if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1)};window.addEventListener("keydown",key);return()=>window.removeEventListener("keydown",key)},[lightbox,shown.length]);
  return <main className="notebook-page gallery-page">
-  <nav className="nav"><Link className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</Link><div className="navlinks"><Link href={sitePath("/#characters")}>{en?"CHARACTERS":"角色介紹"}</Link><Link href={sitePath("/comics")}>{en?"COMICS":"漫畫合集"}</Link><Link href={sitePath("/gallery")}>{en?"GALLERY":"繪畫合集"}</Link></div><button className="lang" onClick={()=>{const next=en?"zh":"en";setLang(next);localStorage.setItem("site-language",next);window.dispatchEvent(new Event("site-language-change"))}} aria-label="Switch language"><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button></nav>
-  <section className="gallery-shell"><Link className="back" href={sitePath("/")}>← BACK TO ARCHIVE</Link><h1>{en?"Gallery":"繪畫合集"}</h1>
+  <nav className="nav"><a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a><div className="navlinks"><a href={sitePath("/#characters")}>{en?"CHARACTERS":"角色介紹"}</a><a href={sitePath("/comics")}>{en?"COMICS":"漫畫合集"}</a><a href={sitePath("/gallery")}>{en?"GALLERY":"繪畫合集"}</a></div><button className="lang" onClick={()=>{const next=en?"zh":"en";setLang(next);localStorage.setItem("site-language",next);window.dispatchEvent(new Event("site-language-change"))}} aria-label="Switch language"><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button></nav>
+  <section className="gallery-shell"><a className="back" href={sitePath("/")}>← BACK TO ARCHIVE</a><h1>{en?"Gallery":"繪畫合集"}</h1>
    <button className="gallery-filter-toggle" type="button" aria-expanded={filterOpen} onClick={()=>setFilterOpen(!filterOpen)}><span>☰</span> {en?"FILTER":"篩選"}</button>
    <div className="gallery-layout">
     <aside className={`gallery-filters${filterOpen?" open":""}`}><h2>{en?"Filter":"篩選"}</h2>

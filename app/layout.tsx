@@ -3,7 +3,6 @@ import "./globals.css";
 import MobileNav from "./MobileNav";
 import {sitePath} from "./sitePath";
 import GoogleAnalytics from "./GoogleAnalytics";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "CITRUSODA · Splatoon OC Archive",
@@ -28,7 +27,7 @@ export default function RootLayout({
         <footer className="footer site-footer">
           <div className="brand"><span>CITRU</span>SODA</div>
           <p>ORIGINAL CHARACTER ARCHIVE · FAN WORK</p>
-          <Link href={sitePath("/")}>BACK TO HOME ↑</Link>
+          <a href={sitePath("/")}>BACK TO HOME ↑</a>
         </footer>
       </body>
     </html>

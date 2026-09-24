@@ -4,7 +4,6 @@ import {useSiteLanguage} from "../useSiteLanguage";
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import {sitePath} from "../sitePath";
-import Link from "next/link";
 
 const characters = [
   { id: "yuuhi", name: "纁", roman: "YUUHI", x: 50, y: 18, color: "#ff672f" },
@@ -111,11 +110,11 @@ export default function RelationshipsPage() {
 
   return <main className="relationship-page">
     <nav className="nav">
-      <Link className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</Link>
+      <a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a>
       <button className="lang" onClick={() => setLang(en ? "zh" : "en")} aria-label="Switch language"><span className={!en ? "on" : ""}>中</span><span className={en ? "on" : ""}>EN</span></button>
     </nav>
     <section className="relationship-shell">
-      <Link className="back" href={sitePath("/")}>← {en ? "BACK TO ARCHIVE" : "返回角色檔案"}</Link>
+      <a className="back" href={sitePath("/")}>← {en ? "BACK TO ARCHIVE" : "返回角色檔案"}</a>
       <header><small>CHARACTER CONNECTION MAP</small><h1>{en ? "RELATIONSHIPS" : "人物關係網"}</h1></header>
       <div className="network-layout">
         <div ref={board} className="network-board" aria-label={en ? "Interactive character relationship network" : "互動人物關係網"}>
@@ -167,7 +166,7 @@ export default function RelationshipsPage() {
               return <button key={index} onClick={() => setSelected(other.id)}><img src={sitePath(`/icons/${other.id}.svg`)} alt="" /><span><b>{other.roman}</b><small style={{ color: link.feeling ? "#d51e35" : undefined }}>{link.directed ? (link.a === selected ? "→ " : "← ") : "↔ "}{en ? link.en : link.zh}</small></span></button>;
             })}
           </div>
-          <Link className="readmore" href={sitePath(`/characters/${person.id}?lang=${lang}`)}>{en ? "VIEW PROFILE" : "查看角色檔案"}<span>➜</span></Link>
+          <a className="readmore" href={sitePath(`/characters/${person.id}?lang=${lang}`)}>{en ? "VIEW PROFILE" : "查看角色檔案"}<span>➜</span></a>
         </aside>}
       </div>
     </section>
