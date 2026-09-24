@@ -2,6 +2,7 @@
 import {useSiteLanguage} from "../../useSiteLanguage";
 import {useParams} from "next/navigation";
 import {sitePath} from "../../sitePath";
+import Link from "next/link";
 const profiles:any={
  yuuhi:{name:"纁",roman:"YUUHI",age:"19",height:"175cm",species:"魷魚",enSpecies:"Inkling",sex:"男",enSex:"Male",job:"熊先生商會打工仔",enJob:"Grizzco Worker",weapon:"工作刮水刀",enWeapon:"Splatana Stamper",tone:"orange",intro:"隨和、缺乏自信；會努力回應來自他人的好意和喜歡。因高強度打工而長期缺乏睡眠，對打工以外的事情也有點遲鈍。",enIntro:"Easygoing and insecure, Yuuhi always tries to return the kindness and affection he receives. Long Grizzco shifts leave him sleep-deprived and rather slow to notice anything outside work.",story:"母親在他兩歲時因病離世，父親自此性情大變，沉迷賭博並把情緒發洩在纁身上。十四歲生日當天，父親留下多年賭債後失蹤；纁被迫輟學，開始在熊先生商會打工還債。",enStory:"Yuuhi's mother died when he was two. His grieving father became violent, fell into gambling, and accumulated enormous debts. On Yuuhi's fourteenth birthday his father disappeared, leaving every debt behind; Yuuhi had to leave school and work for Grizzco to repay them.",extra:[
   {zh:"外觀設定",en:"Appearance",zhItems:["髮型：以海藍色髮圈綁成低馬尾，頭上有兩條翹毛。","墨水顏色：橘色漸變藍紫。","眼睛顏色：海藍。","常服：燃料外套、白色襯衫、藍色無袖背心及 Oyster 甘露醬油鞋。"],enItems:["Hair: A low ponytail tied with a sea-blue band, with two loose tufts on top.","Ink color: Orange fading into blue-violet.","Eye color: Ocean blue.","Everyday outfit: Fuel jacket, white shirt, blue sleeveless vest, and Oyster shoes."]},
@@ -30,10 +31,10 @@ export default function CharacterPage(){
  const id=profiles[slug]?slug:"yuuhi",p=profiles[id];
  const {lang,en,setLang}=useSiteLanguage();
  return <main className={`detail profile-page ${p.tone} ${en?"language-en":"language-zh"}`}>
-  <nav className="nav"><a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a><button className="lang" onClick={()=>setLang(en?"zh":"en")}><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button></nav>
-  <a className="profile-back" href={sitePath("/")}>&lt; {en?"Back to home page":"返回首頁"}</a>
+  <nav className="nav"><Link className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</Link><button className="lang" onClick={()=>setLang(en?"zh":"en")}><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button></nav>
+  <Link className="profile-back" href={sitePath("/")}>&lt; {en?"Back to home page":"返回首頁"}</Link>
   <section className="profile-frame">
-   <aside className="profile-icons" aria-label="Choose character">{order.map(x=><a key={x} className={x===id?"active":""} href={sitePath(`/characters/${x}?lang=${lang}`)}><img src={sitePath(`/icons/${x}.svg`)} alt={profiles[x].roman}/></a>)}</aside>
+   <aside className="profile-icons" aria-label="Choose character">{order.map(x=><Link key={x} className={x===id?"active":""} href={sitePath(`/characters/${x}?lang=${lang}`)}><img src={sitePath(`/icons/${x}.svg`)} alt={profiles[x].roman}/></Link>)}</aside>
    <div className="profile-portrait-col"><div className={`portrait profile-portrait portrait-${id}`}><div className="portrait-splashes" aria-hidden="true"><i/><i/><i/><i/></div><img className="character-art" src={sitePath(`/characters/${id}.png`)} alt={`${p.name} ${p.roman}`}/></div></div>
    <article className="profile-card"><div className="package-hole" aria-hidden="true"/><h1>{en?p.roman:p.name}<i>{en?"":p.roman}</i></h1><div className="profile-meta"><span><b>{en?"Age":"年齡"}</b>{p.age}</span><span><b>{en?"Species":"種族"}</b>{en?p.enSpecies:p.species}</span><span><b>{en?"Sex":"性別"}</b>{en?p.enSex:p.sex}</span>{p.height&&<span><b>{en?"Height: ":"身高："}</b>{p.height}</span>}<span><b>{en?"Job: ":"職業："}</b>{en?p.enJob:p.job}</span><span><b>{en?"Weapon: ":"武器："}</b>{en?p.enWeapon:p.weapon}</span></div><hr/><h2>{en?"Description":"人物個性"}</h2><p>{en?p.enIntro:p.intro}</p><hr/><div className="profile-swatches"><div><b>{en?"Ink color":"墨水顏色"}</b><span/><span/></div><div><b>{en?"Eye color":"眼睛顏色"}</b><span/><span/></div></div></article>
   </section>
