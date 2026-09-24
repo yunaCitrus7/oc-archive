@@ -13,6 +13,7 @@ function sendCommand(frame: HTMLIFrameElement | null, func: string, args: unknow
 export default function BgmPlayer() {
   const frameRef = useRef<HTMLIFrameElement>(null);
   const popRef = useRef<HTMLAudioElement | null>(null);
+  const lastTouchAt = useRef({play: 0, mute: 0});
   const origin = typeof window === "undefined" ? "" : window.location.origin;
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.45);
@@ -130,7 +131,7 @@ export default function BgmPlayer() {
           sendCommand(frameRef.current, muted ? "mute" : "unMute");
         }}
       />
-      <button type="button" className="bgm-toggle" onClick={toggle} aria-label={playing ? "Pause background music" : "Play background music"} title={playing ? "Pause BGM" : "Play BGM"}>
+      <button type="button" className="bgm-toggle" onPointerUp={event=>{if(event.pointerType==="touch"){lastTouchAt.current.play=Date.now();toggle()}}} onClick={()=>{if(Date.now()-lastTouchAt.current.play>700)toggle()}} aria-label={playing ? "Pause background music" : "Play background music"} title={playing ? "Pause BGM" : "Play BGM"}>
         <span aria-hidden="true">{playing ? "Ⅱ" : "▶"}</span>
         <b>BGM</b>
       </button>
@@ -138,7 +139,7 @@ export default function BgmPlayer() {
         <span aria-hidden="true">VOL</span>
         <input type="range" min="0" max="1" step="0.05" value={volume} onChange={(event) => setVolume(Number(event.target.value))} aria-label="BGM volume" />
       </label>
-      <button type="button" className="bgm-mute" onClick={toggleMute} aria-label={muted ? "Unmute music and sound effects" : "Mute music and sound effects"} title={muted ? "Unmute all audio" : "Mute all audio"}>
+      <button type="button" className="bgm-mute" onPointerUp={event=>{if(event.pointerType==="touch"){lastTouchAt.current.mute=Date.now();toggleMute()}}} onClick={()=>{if(Date.now()-lastTouchAt.current.mute>700)toggleMute()}} aria-label={muted ? "Unmute music and sound effects" : "Mute music and sound effects"} title={muted ? "Unmute all audio" : "Mute all audio"}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9a5 5 0 0 1 0 6"/>{muted && <path d="m17 4 4 4m0-4-4 4"/>}</svg>
       </button>
     </div>

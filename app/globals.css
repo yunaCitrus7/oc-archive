@@ -609,6 +609,8 @@ button,
 .header-overlay { position: absolute; inset: 0; }
 .header-image-placeholder { background: url('/header-photo.jpg') center / cover no-repeat; }
 .header-overlay { background: rgb(0 0 0 / .62); }
+.header-image-placeholder,
+.header-overlay { pointer-events:none; }
 .archive-title > span { display: none !important; }
 .archive-title h1 { color: #fff !important; mix-blend-mode: normal !important; }
 .hero-bgm-play {
@@ -624,6 +626,9 @@ button,
   background:rgb(0 0 0 / .28);
   color:#fff;
   cursor:pointer;
+  min-height:44px;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 .hero-bgm-play span {
   display:grid;
@@ -708,6 +713,9 @@ body > main {
   cursor: pointer;
   font: 800 11px var(--font-ui);
   letter-spacing: 1px;
+  min-height:44px;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .bgm-toggle span {
@@ -740,9 +748,9 @@ body > main {
 
 .bgm-mute {
   display:grid;
-  width:30px;
-  height:30px;
-  flex:0 0 30px;
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
   place-items:center;
   padding:5px;
   border:0;
@@ -750,6 +758,8 @@ body > main {
   background:transparent;
   color:var(--ink);
   cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 .bgm-mute:hover { background:#f0edf2; }
 .bgm-mute svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
@@ -757,8 +767,9 @@ body > main {
 @media (max-width: 600px) {
   .bgm-player {
     right: 12px;
-    bottom: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
     padding: 6px 8px;
+    z-index: 1100;
   }
   .bgm-volume input { width: 48px; }
 }
