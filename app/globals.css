@@ -708,8 +708,6 @@ body > main {
   opacity:0;
   pointer-events:none;
 }
-.bgm-pop-audio { display:none; }
-
 .bgm-toggle {
   display: inline-flex;
   align-items: center;

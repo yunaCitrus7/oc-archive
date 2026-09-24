@@ -5,7 +5,6 @@ import {sitePath} from "./sitePath";
 
 export default function BgmPlayer() {
   const bgmRef = useRef<HTMLAudioElement | null>(null);
-  const popRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.45);
   const [muted, setMuted] = useState(false);
@@ -46,24 +45,7 @@ export default function BgmPlayer() {
 
   useEffect(() => {
     if (bgmRef.current) bgmRef.current.muted = muted;
-    if (popRef.current) popRef.current.muted = muted;
     localStorage.setItem("site-audio-muted", String(muted));
-  }, [muted]);
-
-  useEffect(() => {
-    const playPop = (event: MouseEvent) => {
-      if (muted || document.querySelector("main.gallery-page, main.comics-page")) return;
-      if (!(event.target instanceof Element) || !event.target.closest("button, a, [role='button'], input[type='button'], input[type='submit']")) return;
-      const pop = popRef.current;
-      if (!pop) return;
-      pop.currentTime = 0;
-      void pop.play().catch(() => {});
-    };
-
-    // Bubble phase lets a clicked audio control start its main track in the
-    // original touch gesture before the secondary pop effect is requested.
-    document.addEventListener("click", playPop);
-    return () => document.removeEventListener("click", playPop);
   }, [muted]);
 
   useEffect(() => {
@@ -98,7 +80,6 @@ export default function BgmPlayer() {
         onPause={() => setPlaying(false)}
         onTimeUpdate={(event) => localStorage.setItem("bgm-time", String(event.currentTarget.currentTime))}
       />
-      <audio ref={popRef} className="bgm-pop-audio" src={sitePath("/audio/bubble-pop.mp3")} preload="auto" />
       <button type="button" className="bgm-toggle" onClick={toggle} aria-label={playing ? "Pause background music" : "Play background music"} title={playing ? "Pause BGM" : "Play BGM"}>
         <span aria-hidden="true">{playing ? "Ⅱ" : "▶"}</span>
         <b>BGM</b>
