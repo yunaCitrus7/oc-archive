@@ -18,6 +18,7 @@ export default function ComicReaderPage() {
     <nav className="nav">
       <a className="brand" href={sitePath("/")}><span>CITRUSODA</span> OC ARCHIVE</a>
       <div className="navlinks"><a href={sitePath("/#characters")}>{en?"CHARACTERS":"角色介紹"}</a><a href={sitePath("/comics")}>{en?"COMICS":"漫畫合集"}</a><a href={sitePath("/gallery")}>{en?"GALLERY":"繪畫合集"}</a></div>
+      <button className="lang" aria-label="Switch language" onClick={()=>setLang(en?"zh":"en")}><span className={!en?"on":""}>中</span><span className={en?"on":""}>EN</span></button>
     </nav>
     <section className="comic-reader-shell">
       <a className="back" href={sitePath("/comics")}>← ALL CHAPTERS</a>
@@ -31,11 +32,11 @@ export default function ComicReaderPage() {
         </div>)}
       </div>
       <nav className="reader-chapter-nav" aria-label="Chapter navigation">
-        <a className={previous ? "" : "disabled"} href={previous ? sitePath(`/comics/chapter-${previous}?lang=${lang}`) : "#"} aria-disabled={!previous}>
+        <a className={previous ? "" : "disabled"} href={previous ? sitePath(`/comics/chapter-${previous}?lang=${lang}`) : undefined} aria-disabled={!previous}>
           <span>←</span> PREVIOUS CHAPTER
         </a>
         <b>{current} / {chapterCount}</b>
-        <a className={next ? "" : "disabled"} href={next ? sitePath(`/comics/chapter-${next}?lang=${lang}`) : "#"} aria-disabled={!next}>
+        <a className={next ? "" : "disabled"} href={next ? sitePath(`/comics/chapter-${next}?lang=${lang}`) : undefined} aria-disabled={!next}>
           NEXT CHAPTER <span>→</span>
         </a>
       </nav>

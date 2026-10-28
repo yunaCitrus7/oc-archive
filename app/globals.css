@@ -684,7 +684,8 @@ body > main > .archive-title {
 }
 
 /* Character profile package layout. */
-.profile-page { background: #fff; min-height:100vh; }
+/* Clip the card's swing-in rotation so it can't widen the page on phones. */
+.profile-page { background: #fff; min-height:100vh; overflow-x:clip; }
 .profile-back { display:inline-block; margin:42px 5vw 24px; font:600 15px var(--font-body); }
 .profile-frame { width:min(1220px,90vw); margin:20px auto 0; display:grid; grid-template-columns:80px minmax(260px,1fr) minmax(360px,.95fr); gap:28px; align-items:center; }
 .profile-icons { display:flex; flex-direction:column; align-items:center; gap:22px; }

@@ -9,7 +9,8 @@ const getCharacters=(path:string)=>{
  const filename=path.split("/").pop()!.toLowerCase();
  const tokens=filename.split(/[^a-z]+/);
  if(tokens.includes("all")) return characters;
- const tagged=Object.entries(characterTags).filter(([tag,name])=>tokens.includes(tag)||tokens.includes(name)).map(([,name])=>name);
+ // "a" can't be a short tag: it also appears in names like 20240322(2a) and 20240408a.
+ const tagged=characters.filter(name=>tokens.includes(name)||Object.entries(characterTags).some(([tag,tagName])=>tagName===name&&tokens.includes(tag)));
  if(filename.startsWith("20240906-a.")) tagged.push("akane");
  return tagged;
 };
