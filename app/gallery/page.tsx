@@ -5,6 +5,12 @@ import {galleryFiles} from "./data";
 
 const characters=["musubi","yuuhi","shuu","akane","sumire","kumori"];
 const characterTags: Record<string,string> = {m:"musubi",y:"yuuhi",s:"shuu",su:"sumire",k:"kumori"};
+const artworkLabels: Record<string,string> = {
+ "20261018(3)-m-y.jpg":"Musubi - Yuuhi",
+ "20261018(4)-s-y.jpg":"Shuu - Yuuhi",
+ "20261029-m.jpg":"Musubi",
+ "20261018(2)-m.jpg":"Musubi",
+};
 const getCharacters=(path:string)=>{
  const filename=path.split("/").pop()!.toLowerCase();
  const tokens=filename.split(/[^a-z]+/);
@@ -19,7 +25,7 @@ const works=galleryFiles.map((path,index)=>{
  const file=parts[parts.length-1];
  const category=parts[parts.length-2];
  const year=parts[parts.length-3];
- return {path,file,category,year,characters:getCharacters(path),kind:/\.mp4$/i.test(file)?"video":"image",id:index};
+ return {path,file,category,year,characters:getCharacters(path),label:artworkLabels[file],kind:/\.mp4$/i.test(file)?"video":"image",id:index};
 });
 
 export default function GalleryPage(){
@@ -41,9 +47,9 @@ export default function GalleryPage(){
      <div className="filter-group"><b>{en?"Sort":"排序"}</b><div className="filter-options"><button className={sortOrder==="newest"?"active":""} onClick={()=>setSortOrder("newest")}>{en?"Latest first":"由新至舊"}</button><button className={sortOrder==="oldest"?"active":""} onClick={()=>setSortOrder("oldest")}>{en?"Oldest first":"由舊至新"}</button></div></div>
      <div className="filter-group"><b>{en?"Character":"角色"}</b><div className="character-filter">{characters.map(x=><button className={character===x?"active":""} onClick={()=>setCharacter(character===x?"All":x)} key={x} aria-label={x}><img src={sitePath(`/icons/${x}.svg`)} alt=""/></button>)}</div></div>
     </aside>
-    <section key={`${category}-${year}-${character}-${sortOrder}`} className="gallery-package"><div className="gallery-handle" aria-hidden="true"/><div className="gallery-art-grid">{shown.map((x,index)=><figure key={x.path}><button className="gallery-art-button" type="button" onClick={()=>setLightbox(index)}>{x.kind==="video"?<video src={sitePath(x.path)} muted playsInline preload="metadata"/>:<img src={sitePath(x.path)} alt={x.file} loading="lazy"/>}</button><figcaption><b>{x.characters.length?x.characters.map(name=>name.toUpperCase()).join(" · "):"ARTWORK"}</b><span>{x.category} · {x.year}</span></figcaption></figure>)}{shown.length===0&&<p className="gallery-empty">No artwork matches these filters yet.</p>}</div></section>
+    <section key={`${category}-${year}-${character}-${sortOrder}`} className="gallery-package"><div className="gallery-handle" aria-hidden="true"/><div className="gallery-art-grid">{shown.map((x,index)=><figure key={x.path}><button className="gallery-art-button" type="button" onClick={()=>setLightbox(index)}>{x.kind==="video"?<video src={sitePath(x.path)} muted playsInline preload="metadata"/>:<img src={sitePath(x.path)} alt={x.file} loading="lazy"/>}</button><figcaption><b>{x.label??(x.characters.length?x.characters.map(name=>name.toUpperCase()).join(" · "):"ARTWORK")}</b><span>{x.category} · {x.year}</span></figcaption></figure>)}{shown.length===0&&<p className="gallery-empty">No artwork matches these filters yet.</p>}</div></section>
    </div>
   </section>
-  {current&&<div className="gallery-lightbox" role="dialog" aria-modal="true" aria-label={`${current.file} artwork`} onClick={()=>setLightbox(null)}><button className="lightbox-close" onClick={()=>setLightbox(null)} aria-label="Close">×</button><button className="lightbox-arrow prev" onClick={e=>{e.stopPropagation();move(-1)}} aria-label="Previous image">‹</button><div className="lightbox-image" onClick={e=>e.stopPropagation()}>{current.kind==="video"?<video src={sitePath(current.path)} controls autoPlay loop/>:<img src={sitePath(current.path)} alt={current.file}/>}<p>{current.characters.length?current.characters.map(name=>name.toUpperCase()).join(" · "):"ARTWORK"} · {current.category} · {current.year}</p></div><button className="lightbox-arrow next" onClick={e=>{e.stopPropagation();move(1)}} aria-label="Next image">›</button></div>}
+  {current&&<div className="gallery-lightbox" role="dialog" aria-modal="true" aria-label={`${current.file} artwork`} onClick={()=>setLightbox(null)}><button className="lightbox-close" onClick={()=>setLightbox(null)} aria-label="Close">×</button><button className="lightbox-arrow prev" onClick={e=>{e.stopPropagation();move(-1)}} aria-label="Previous image">‹</button><div className="lightbox-image" onClick={e=>e.stopPropagation()}>{current.kind==="video"?<video src={sitePath(current.path)} controls autoPlay loop/>:<img src={sitePath(current.path)} alt={current.file}/>}<p>{current.label??(current.characters.length?current.characters.map(name=>name.toUpperCase()).join(" · "):"ARTWORK")} · {current.category} · {current.year}</p></div><button className="lightbox-arrow next" onClick={e=>{e.stopPropagation();move(1)}} aria-label="Next image">›</button></div>}
  </main>
 }

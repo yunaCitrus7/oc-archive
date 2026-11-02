@@ -127,6 +127,10 @@ export const galleryFiles = [
   "/gallery/Gallery/2026/Sketch/20260816(2)-m.jpg",
   "/gallery/Gallery/2026/Sketch/20260817-y.png",
   "/gallery/Gallery/2026/Sketch/20260906-y.jpg",
-  "/gallery/Gallery/2026/Sketch/20260913(3)-m-s-y.jpg"
+  "/gallery/Gallery/2026/Sketch/20260913(3)-m-s-y.jpg",
+  "/gallery/Gallery/2026/Illustration/20261018(3)-m-y.jpg",
+  "/gallery/Gallery/2026/Illustration/20261018(4)-s-y.jpg",
+  "/gallery/Gallery/2026/Illustration/20261029-m.jpg",
+  "/gallery/Gallery/2026/Illustration/20261018(2)-m.jpg"
 ] as const;
 
